@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {ActivityIndicator, Platform} from 'react-native';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text,Image, TouchableOpacity} from 'react-native';
 import XDate from 'xdate';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
@@ -28,7 +28,9 @@ class CalendarHeader extends Component {
     disableArrowRight: PropTypes.bool,
     webAriaLevel: PropTypes.number,
     disabledDaysIndexes: PropTypes.arrayOf(PropTypes.number),
-    renderHeader: PropTypes.any
+    renderHeader: PropTypes.any,
+    selectAll: PropTypes.bool,
+    setSelectAll: PropTypes.func
   };
 
   static defaultProps = {
@@ -121,8 +123,15 @@ class CalendarHeader extends Component {
     });
   }
 
+  //added
+  onSelectAll =() =>{
+    const {setSelectAll} = this.props;
+    setSelectAll();
+  }
+  
+//added
   renderHeader = () => {
-    const {renderHeader, month, monthFormat, testID} = this.props;
+    const {renderHeader, month, monthFormat, testID, selectAll} = this.props;
     const webProps = Platform.OS === 'web' ? {'aria-level': this.props.webAriaLevel} : {};
 
     if (renderHeader) {
@@ -139,6 +148,7 @@ class CalendarHeader extends Component {
         >
           {month.toString(monthFormat)}
         </Text>
+        {selectAll === true && <TouchableOpacity onPress={this.onSelectAll} style={{marginTop:'4%', marginStart:'38%'}}><Text style={{fontSize:18, color: '#99BD22'}}>Select All</Text></TouchableOpacity>} 
       </Fragment>
     );
   };

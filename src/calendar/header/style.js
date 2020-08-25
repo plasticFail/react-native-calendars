@@ -8,11 +8,9 @@ export default function(theme={}) {
   return StyleSheet.create({
     header: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingLeft: 10,
-      paddingRight: 10,
+      justifyContent: theme.header,//added
       marginTop: 6,
-      alignItems: 'center'
+      alignItems: 'center',
     },
     headerContainer: {
       flexDirection: 'row'
@@ -22,7 +20,9 @@ export default function(theme={}) {
       fontFamily: appStyle.textMonthFontFamily,
       fontWeight: appStyle.textMonthFontWeight,
       color: appStyle.monthTextColor,
-      margin: 10
+      margin: 10,
+      fontWeight:'700',
+      fontSize: 20
     },
     arrow: {
       padding: 10,

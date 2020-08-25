@@ -98,7 +98,10 @@ class Calendar extends Component {
     /** Replace default month and year title with custom one. the function receive a date as parameter. */
     renderHeader: PropTypes.any,
     /** Enable the option to swipe between months. Default: false */
-    enableSwipeMonths: PropTypes.bool
+    enableSwipeMonths: PropTypes.bool,
+    //added
+    selectAll: PropTypes.bool,
+    setSelectAll : PropTypes.func
   };
 
   static defaultProps = {
@@ -391,6 +394,8 @@ class Calendar extends Component {
             disableArrowRight={this.props.disableArrowRight}
             disabledDaysIndexes={this.props.disabledDaysIndexes}
             renderHeader={this.props.renderHeader}
+            selectAll={this.props.selectAll} //added
+            setSelectAll={this.props.setSelectAll} //added
           />
           <View style={this.style.monthView}>{weeks}</View>
         </View>
